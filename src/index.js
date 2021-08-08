@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import DateComponent from "./GrandParent";
-import Parent from "./Parent";
+import { BrowserRouter as Router } from "react-router-dom";
+import Home from "./Home";
+import "./index.css";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <DateComponent />
-  </BrowserRouter>,
+  <Router>
+    <Home />
+  </Router>,
   document.getElementById("container")
 );
 
