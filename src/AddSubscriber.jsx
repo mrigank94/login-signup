@@ -4,6 +4,7 @@ import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import "./css/add-subscriber.css";
+import { connect } from "react-redux";
 
 const AddSubscriber = (props) => {
   const history = useHistory();
@@ -16,7 +17,7 @@ const AddSubscriber = (props) => {
   }
 
   function handleSubmit() {
-    props.handleAdd(name, phone);
+    props.onAdd(name, phone);
     history.push("/");
   }
 
@@ -73,4 +74,15 @@ const AddSubscriber = (props) => {
   );
 };
 
-export default AddSubscriber;
+function mapDispatchToProps(dispatch) {
+  return {
+    onAdd: function (name, phone) {
+      dispatch({
+        type: "ADD_SUBSCRIBER",
+        payload: { name: name, phone: phone },
+      });
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(AddSubscriber);

@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import "./css/show-subscribers.css";
+import { connect } from "react-redux";
 
 const ShowSubscribers = (props) => {
   const history = useHistory();
@@ -37,7 +37,7 @@ const ShowSubscribers = (props) => {
               <span className="grid-item">
                 <Button
                   onClick={function () {
-                    props.handleDelete(contact.id);
+                    props.onDelete(contact.id);
                   }}
                   color="secondary"
                   variant="contained"
@@ -53,4 +53,18 @@ const ShowSubscribers = (props) => {
   );
 };
 
-export default ShowSubscribers;
+function mapStateToProps(store) {
+  return {
+    subscribersList: store.subscribersList,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onDelete: function (id) {
+      dispatch({ type: "DELETE_SUBSCRIBER", payload: { id: id } });
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowSubscribers);
