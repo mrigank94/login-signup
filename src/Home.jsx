@@ -1,20 +1,12 @@
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
-import Login from "./Login";
-import Movies from "./Movies";
-import SignUp from "./SignUp";
+import NewsArticles from "./NewsArticles";
+import Posts from "./Posts";
 
 const Home = () => {
-  const history = useHistory();
-  if (localStorage.getItem("isLoggedIn") === "true") {
-    history.push("/movies");
-  }
-
   return (
     <Switch>
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={SignUp} />
-      <Route path="/movies" component={Movies} />
-      <Redirect to="/login" />
+      <Route path="/posts" component={Posts} />
+      <Route path="/" component={NewsArticles} />
     </Switch>
   );
 };
